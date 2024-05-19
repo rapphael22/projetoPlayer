@@ -1,0 +1,45 @@
+*{
+    background: rgb(240, 241, 255);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.titulo{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+
+}
+
+.titulo h1{
+    font-size: 40px;
+    color: rgb(8, 71, 189);
+    margin: 40px ;
+}
+
+.container{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoMusica p{
+    font-size: 25px;
+    color: rgb(66, 66, 184);
+}
+
+.conteudoMusica span{
+    font-size: 15px;
+    color: rgb(0, 0, 255);
+}
+
+.controlesMusica{
+    margin: 25px 0px 30px 0px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: transparent;
+
+}
