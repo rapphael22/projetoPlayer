@@ -1,25 +1,25 @@
 *{
-    background: rgb(240, 241, 255);
+    background: rgb(68, 68, 68);
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .titulo{
-    height: 10vh;
     display: flex;
     justify-content: center;
+    padding: 20px;
 
 }
 
 .titulo h1{
     font-size: 40px;
-    color: rgb(8, 71, 189);
+    color: rgb(0, 0, 0);
     margin: 40px ;
 }
 
-.container{
-    height: 80vh;
+.containerCard{
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,12 +27,14 @@
 
 .conteudoMusica p{
     font-size: 25px;
-    color: rgb(66, 66, 184);
+    color: rgb(0, 0, 0);
+    padding: 15px;
 }
 
 .conteudoMusica span{
-    font-size: 15px;
-    color: rgb(0, 0, 255);
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    padding: 5%;
 }
 
 .controlesMusica{
@@ -41,5 +43,8 @@
     justify-content: space-between;
     cursor: pointer;
     background-color: transparent;
+}
 
+audio{
+    padding: 10px;
 }
