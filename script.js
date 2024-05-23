@@ -1,61 +1,78 @@
-const musica = document.getElementById('musica');
-const musicaImagem = document.getElementById('musicaImagem');
-const botaoPlay = document.getElementById('botaoPlay');
-const botaoAnterior = document.getElementById('botaoAnterior');
-const botaoProximo = document.getElementById('botaoProximo');
+const player = document.querySelector("#player");
+const musicName = document.querySelector("#musicName");
+const capaMusica = document.querySelector("#musicImage");
+const playPauseButton = document.querySelector("#playPauseButton");
+const prevButton = document.querySelector("#prevButton");
+const nextButton = document.querySelector("#nextButton");
+const currentTime = document.querySelector("#currentTime");
+const duration = document.querySelector("#duration");
+const progressBar = document.querySelector(".progress-bar");
+const progress = document.querySelector(".progress");
 
-const musicas = [
-  { src: 'musica1.mp3', imagem: 'imagem1.jpg' },
-  { src: 'musica2.mp3', imagem: 'imagem2.jpg' },
-  { src: 'musica3.mp3', imagem: 'imagem3.jpg' },
-  // Adicione mais músicas aqui
-];
 
-let musicaAtual = 0; // Começa com a primeira música
+import songs from "./songs.js";
 
-// Função para tocar a música atual
-function tocarMusica() {
-  musica.src = musicas[musicaAtual].src;
-  musica.play();
-  atualizarImagem();
-}
+const textButtonPlay = "<i class='bx bx-caret-right'></i>";
+const textButtonPause = "<i class='bx bx-pause'></i>";
 
-// Função para atualizar a imagem da música
-function atualizarImagem() {
-  musicaImagem.src = musicas[musicaAtual].imagem;
-}
+let index = 0;
 
-// Função para tocar a música anterior
-function musicaAnterior() {
-  musicaAtual--;
-  if (musicaAtual < 0) {
-    musicaAtual = musicas.length - 1;
-  }
-  tocarMusica();
-}
+prevButton.onclick = () => prevNextMusic("prev");
+nextButton.onclick = () => prevNextMusic();
 
-// Função para tocar a próxima música
-function musicaProximo() {
-  musicaAtual++;
-  if (musicaAtual >= musicas.length) {
-    musicaAtual = 0;
-  }
-  tocarMusica();
-}
+playPauseButton.onclick = () => playPause();
 
-// Eventos de click para os botões
-botaoPlay.addEventListener('click', function() {
-  if (musica.paused) {
-    musica.play();
-    botaoPlay.textContent = 'Pause';
+const playPause = () => {
+  if (player.paused) {
+    player.play();
+    playPauseButton.innerHTML = textButtonPause;
   } else {
-    musica.pause();
-    botaoPlay.textContent = 'Play';
+    player.pause();
+    playPauseButton.innerHTML = textButtonPlay;
   }
-});
+};
 
-botaoAnterior.addEventListener('click', musicaAnterior);
-botaoProximo.addEventListener('click', musicaProximo);
+player.ontimeupdate = () => updateTime();
 
-// Tocar a música inicial quando a página carregar
-tocarMusica();
+const updateTime = () => {
+  const currentMinutes = Math.floor(player.currentTime / 60);
+  const currentSeconds = Math.floor(player.currentTime % 60);
+  currentTime.textContent = currentMinutes + ":" + formatZero(currentSeconds);
+
+  const durationFormatted = isNaN(player.duration) ? 0 : player.duration;
+  const durationMinutes = Math.floor(durationFormatted / 60);
+  const durationSeconds = Math.floor(durationFormatted % 60);
+  duration.textContent = durationMinutes + ":" + formatZero(durationSeconds);
+
+  const progressWidth = durationFormatted
+    ? (player.currentTime / durationFormatted) * 100
+    : 0;
+
+  progress.style.width = progressWidth + "%";
+};
+
+const formatZero = (n) => (n < 10 ? "0" + n : n);
+
+progressBar.onclick = (e) => {
+  const newTime = (e.offsetX / progressBar.offsetWidth) * player.duration;
+  player.currentTime = newTime;
+};
+
+const prevNextMusic = (type = "next") => {
+  if ((type == "next" && index + 1 === songs.length) || type === "init") {
+    index = 0;
+  } else if (type == "prev" && index === 0) {
+    index = songs.length;
+  } else {
+    index = type === "prev" && index ? index - 1 : index + 1;
+  }
+
+  player.src = songs[index].src;
+  musicName.innerHTML = songs[index].name;
+  musicImage.src = songs[index].img;
+  if (type !== "init") playPause();
+
+  updateTime();
+};
+
+prevNextMusic("init");

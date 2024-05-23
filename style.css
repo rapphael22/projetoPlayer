@@ -1,5 +1,99 @@
-*{
-    background: rgb(51, 51, 51);
-    font-family: Arial, Helvetica, sans-serif;
+* {
+  background-color: #10377A;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  max-width: 430px;
+  width: 100%;
+  height: 500px;
+  margin: 0 5px;
+  box-shadow: 0 1px 10px #9FAFCE;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.image {
+  background-color: #9FAFCE;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.image i {
+  font-size: 200px;
+  align-items: center;
+}
+
+#musicName {
+  color: white;
+  white-space: nowrap; 
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 30px;
+}
+
+.controls button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.controls i {
+  font-size: 60px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #f7f7f7;
+  transition: all .2s;
+}
+
+.controls i:hover {
+  background-color: lightgray;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time span {
+  font-size: 22px;
+  color: white;
+}
+
+.footer {
+  width: 100%;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color:#9FAFCE;
+  cursor: pointer;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.progress {
+  height: 8px;
+  background-color: white;
+  border-radius: 5px;
+}

@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>projetoPlayer</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+
 </head>
 <body>
 
+  
+   
+    <div class="player">
 
-
-    <div class="containerCard">
-
-      <div class="imageMusic">
-            <img src="" alt="">
+    <div class="image">
+      <img id="musicImage" src="" alt="" width="390" height="220">
+    </div>
+ 
+    
+    <span id="musicName"></span>
+    
+    <audio id="player" src=""></audio>
+    <div class="controls">
+      <button id="prevButton"><i class='bx bx-skip-previous'></i></button>
+      <button id="playPauseButton"><i class='bx bx-caret-right'></i></button>
+      <button id="nextButton"><i class='bx bx-skip-next'></i></button>
+    </div>
+    <div class="footer">
+      <div class="progress-bar">
+        <div class="progress"></div>
       </div>
-            
-      <div class="titleMusic">
-
-        <p class="artistMusic"></p>
-
-      </div>      
-
-      <div class="controlsPlayPause">
-              
-        <audio controls src=""></audio>
-            
-      </div>
-
-            
-      <div class="buttonNextPrev">
-        
+      <div class="time">
+        <span id="currentTime">0:00</span>
+        <span id="duration">0:00</span>
       </div>
     </div>
-
-    <script src="script.js"></script>
+  </div>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
